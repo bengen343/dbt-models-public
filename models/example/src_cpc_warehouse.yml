@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: co_voterfile
+    database: cpc-datawarehouse-51210
+    schema: co_voterfile
+    tables:
+      - name: vote-history
+      - name: 2022-06
+      - name: 2022-primary-returns
