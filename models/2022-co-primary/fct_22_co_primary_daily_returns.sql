@@ -3,6 +3,10 @@
     2022 Colorado Primary Returns by Day.
 */
 
+{{ config (
+    materialized="table"
+)}}
+
 WITH DAILY AS(
   SELECT * FROM(
     SELECT
