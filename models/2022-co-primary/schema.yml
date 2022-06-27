@@ -2,20 +2,32 @@
 version: 2
 
 models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
+    - name: fct_22_co_primary_county_returns
+      description: "2022 CO Primary ballot returns by county by party"
       columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+          - name: COUNTY
+            description: "Colorado County"
+          - name: REP
+            description: "Number of 2022 CO Primary ballots returned by Republicans"
+          - name: DEM
+            description: "Number of 2022 CO Primary ballots returned by Democrats"
+          - name: UAF
+            description: "Number of 2022 CO Primary ballots returned by Unaffiliated voters"
+          - name: TOTAL
+            description: "Total number of 2022 CO Primary ballots returned in the county"
+          - name: VOTED_REP
+            description: "The number of Unaffiliated voters who chose to return ballots for the Republican Primary"
+          - name: VOTED_DEM
+            description: "The number of Unaffiliated voters who chose to return ballots for the Democrat Primary"
 
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
+    - name: fct_22_co_primary_daily_returns
+      description: "2022 CO Primary ballots cast by party by date of ballot return"
       columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+          - name: RECEIVED
+            description: "The day the ballot was returned and processed by the county clerk"
+          - name: REP
+            description: "The number of ballots returned by registered Republicans on this day"
+          - name: DEM
+            description: "The number of ballots returned by registered Democrats on this day"
+          - name: UAF
+            description: "The number of ballots returned by Unaffiliated voters on this day"
