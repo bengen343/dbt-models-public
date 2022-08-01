@@ -1,0 +1,21 @@
+version: 2
+
+models:
+    - name: stg_co_sos__vote_history
+      description: "Colorado voter history with columns renamed  and formatted to CPC standard"
+      columns:
+          - name: voter_id
+            description: A string giving the CO Secretary of State voter id for this voter
+          - name: election_type
+            description: A string giving the type of election this ballot was cast in; primary/general etc.
+          - name: election_date
+            description: A date object giving the date the election this ballot was cast for was held.
+          - name: election_description
+            description: A string giving the long description of this election.
+          - name: voting_method
+            description: A string giving the method by which this ballot was cast; in-person, mail, etc.
+          - name: party
+            description: A string giving the party affiliation of the voter casting this ballot.
+          - name: county_name
+            description: A string giving the full county name of the Colorado county where this voter was registered.
+ 

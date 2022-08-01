@@ -6,5 +6,7 @@ sources:
     schema: co_voterfile
     tables:
       - name: vote-history
-      - name: 2022-06
       - name: 2022-primary-returns
+      - name: 2022-06
+        identifier: co_voters_current
+      - name: 2021-06
