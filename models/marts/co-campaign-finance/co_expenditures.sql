@@ -13,7 +13,7 @@ results as (
 expenditures_results as (
     select
         RecordID,
-        results.election_year,
+        expenditures.election_year,
         Jurisdiction,
         expenditures.CO_ID,
         CommitteeType,
