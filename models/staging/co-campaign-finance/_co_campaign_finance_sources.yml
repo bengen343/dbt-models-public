@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: co_campaign_finance
+    database: cpc-datawarehouse-51210
+    schema: co_campaign_finance
+    tables:
+      - name: contribution
+      - name: expenditure
+      - name: loan
+      - name: results
