@@ -6,7 +6,8 @@ with expenditures as (
 
 results as (
     select
-        *
+        *,
+        row_number() over (partition by election_year, committee_id order by election_type asc) as row
     from {{ ref('stg_co_campaign_finance__results') }}
 ),
 
@@ -51,11 +52,11 @@ expenditures_results as (
         incumbent,
         is_self_funder
     from expenditures
-    left join results on expenditures.CO_ID=results.committee_id and expenditures.election_year=results.election_year
+    left join results on expenditures.CO_ID=results.committee_id and expenditures.election_year=results.election_year and row=1
     left join {{ ref('self_funding_mix') }} as self_funding_mix on expenditures.CO_ID=self_funding_mix.CO_ID and results.election_year=self_funding_mix.election_year
 
 )
 
 select
-    *
+   *
 from expenditures_results
