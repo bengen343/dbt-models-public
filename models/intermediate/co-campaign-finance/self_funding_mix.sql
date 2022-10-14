@@ -14,7 +14,7 @@ self_contributions as (
         election_year,
         sum(ContributionAmount) AS total_self_contributions
     from {{ ref('stg_co_campaign_finance__contributions') }}
-    WHERE contributor_type = 'Individual' AND ContributionAmount > 1500 AND lower(CommitteeType) LIKE 'candidate%'
+    WHERE (contributor_type = 'Individual' OR contributor_type='Candidate') AND ContributionAmount > 1500 AND lower(CommitteeType) LIKE 'candidate%'
     group by CO_ID, election_year
 ),
 

@@ -20,11 +20,13 @@ results as (
         district_name,
         candidate_party,
         candidate_name,
+        incumbent,
         votes,
         votes_rank,
         self_percentage,
-        incumbent,
-        is_self_funder
+        is_self_funder,
+        total_self_contributions,
+        loan_balance
     from stg_results
     left join self_funding on stg_results.CO_ID=self_funding.CO_ID and stg_results.election_year=self_funding.election_year
 )
