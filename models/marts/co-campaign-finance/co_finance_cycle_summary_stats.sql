@@ -1,6 +1,7 @@
 with cycle_level as (
   select
     election_year,
+    CommitteeType,
     election_type,
     office_name,
     incumbent,
@@ -12,8 +13,8 @@ with cycle_level as (
     avg(total_expenditures) as average_total_expenditures,
     avg(average_expenditure) as average_average_expenditure
   from {{ ref('co_finance_committee_summary_stats') }}
-  group by election_year, election_type, office_name, incumbent, outcome
-  order by election_year, election_type, office_name, incumbent, outcome
+  group by election_year, CommitteeType, election_type, office_name, incumbent, outcome
+  order by election_year, CommitteeType, election_type, office_name, incumbent, outcome
 )
 
 select
