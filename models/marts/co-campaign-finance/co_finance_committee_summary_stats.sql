@@ -22,7 +22,7 @@ committee_expenditures as (
     election_type,
     office_name,
     incumbent,
-    (case when votes_rank = 1 then 'win' else 'loss' end) as outcome,
+    (case when votes_rank = 1 then 'win' when votes_rank > 1 then 'loss' else null end) as outcome,
     CO_ID,
     count(RecordID) as expenditures,
     sum(ExpenditureAmount) as total_expenditures,
