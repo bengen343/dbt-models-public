@@ -50,6 +50,8 @@ committee_level as (
   from committee_contributions
   join committee_expenditures 
     on committee_contributions.election_year = committee_expenditures.election_year
+    and committee_contributions.office_name = committee_expenditures.office_name
+    and committee_contributions.election_type = committee_expenditures.election_type
     and committee_contributions.CO_ID = committee_expenditures.CO_ID
 )
 
