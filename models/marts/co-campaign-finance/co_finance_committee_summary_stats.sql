@@ -5,7 +5,7 @@ with committee_contributions as (
     election_type,
     office_name,
     incumbent,
-    (case when votes_rank = 1 then 'win' else 'loss' end) as outcome,
+    (case when votes_rank = 1 then 'win' when votes_rank > 1 then 'loss' else null end) as outcome,
     CO_ID,
     count(RecordID) as contributions,
     sum(ContributionAmount) as total_contributions,
@@ -48,10 +48,8 @@ committee_level as (
     committee_expenditures.total_expenditures,
     committee_expenditures.average_expenditure
   from committee_contributions
-  join committee_expenditures 
+  full outer join committee_expenditures 
     on committee_contributions.election_year = committee_expenditures.election_year
-    and committee_contributions.office_name = committee_expenditures.office_name
-    and committee_contributions.election_type = committee_expenditures.election_type
     and committee_contributions.CO_ID = committee_expenditures.CO_ID
 )
 
