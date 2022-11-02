@@ -7,7 +7,8 @@ sources:
     tables:
       - name: vote-history
       - name: 2022-primary-returns
+      - name: 2022-general-returns
       - name: co_voters_current
-        identifier: 2022-07
+        identifier: 2022-10
       - name: 2022-06
       - name: 2021-06
