@@ -18,7 +18,7 @@ WITH DAILY AS(
   )
   PIVOT(
     COUNT(VOTER_ID)
-    FOR PARTY IN ('REP', 'DEM', 'UAF')
+    FOR PARTY IN ('REP', 'DEM', 'UAF', 'OTH')
   )
 )
 
