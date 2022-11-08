@@ -9,6 +9,12 @@ sources:
       - name: 2022-primary-returns
       - name: 2022-general-returns
       - name: co_voters_current
-        identifier: 2022-10
-      - name: 2022-06
-      - name: 2021-06
+        identifier: voters_20221001
+      - name: voters_20220901
+      - name: voters_20220801
+      - name: voters_20220701
+      - name: voters_20220601
+      - name: voters_20220501
+      - name: voters_20220401
+      - name: voters_20220301
+      - name: voters_20210601

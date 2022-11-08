@@ -5,12 +5,12 @@
 
 WITH june21 AS (
     SELECT
-        CONCAT(VOTER_ID, '.0') AS VOTER_ID,
+        VOTER_ID,
         (CASE
             WHEN PARTY NOT IN ('REP', 'DEM', 'UAF') THEN 'OTH'
             ELSE PARTY
         END) AS PARTY_OLD
-    FROM {{ source('co_voterfile', '2021-06') }}
+    FROM {{ source('co_voterfile', 'voters_20210601') }}
 ),
 
 june22 AS (
@@ -20,7 +20,7 @@ june22 AS (
             WHEN PARTY NOT IN ('REP', 'DEM', 'UAF') THEN 'OTH'
             ELSE PARTY
         END) AS PARTY_NEW
-    FROM {{ source('co_voterfile', '2022-06') }}
+    FROM {{ source('co_voterfile', 'voters_20220601') }}
 )
 
 SELECT
