@@ -1,0 +1,171 @@
+version: 2
+
+sources:
+  - name: co_voterfile
+    description: Data made available by the Colorado Secretary of State on voter registration and turnout.
+    database: cpc-datawarehouse-51210
+    schema: co_voterfile
+    loader: Python services hosted on Google Cloud Run. https://github.com/bengen343
+    tags: [voter_file]
+    
+    tables:
+      - name: vote-history
+        description: A table giving the voter id numbers of every voter who cast a ballot in each election on record.
+        tags: [voter_file, history, turnout]
+        columns:
+          - name: VOTER_ID
+            description: An integer giving the unique Colorado voter id for the voter casting this ballot.
+            tests:
+              - not_null
+          - name: ELECTION_TYPE
+            description: A string giving the type of election. Ie General, Primary, Municipal etc.
+          - name: ELECTION_DATE
+            description: A date giving the date this election occurred.
+          - name: ELECTION_DESCRIPTION
+            description: A string giving the natural language description of what this election was. Ie 2020 Adams County General.
+          - name: VOTING_METHOD
+            description: A string giving the method by which this ballot was cast. Ie in-person, mail, etc.
+          - name: PARTY
+            description: A string giving the party affiliation of the voter casting this ballot at the time it was cast.
+          - name: COUNTY_NAME
+            description: A String giving the name of the Colorado county this voter was registered in at the time they cast this ballot.
+
+      - name: voters
+        description: A table holding all records that have appeared as registered Colorado voters and the time period for which they were valid.
+        tags: [voter_file]
+        columns:
+          - name: VOTER_ID
+            description: An integer giving the unique Colorado voter id for the voter casting this ballot.
+            tests:
+              - not_null
+          - name: COUNTY_CODE
+            description: An integer giving the FIPS code for this voter's county. 
+          - name: COUNTY
+            description: A string
+          - name: LAST_NAME
+            description: A string
+          - name: FIRST_NAME
+            description: A string
+          - name: MIDDLE_NAME
+            description: A string 
+          - name: NAME_SUFFIX
+            description: A string 
+          - name: VOTER_NAME
+            description: A string giving the full name of this voter.
+          - name: ADDRESS_LIBRARY_ID
+            description: An integer 
+          - name: HOUSE_NUM
+            description: An integer giving only the house number portion of this voter's address. 
+          - name: HOUSE_SUFFIX
+            description: A string giving only the house suffix portion of this voter's address. Ie apartment, A, 1.
+          - name: PRE_DIR
+            description: A string giving only the street prefex portion of this voter's address. Ie N, W, S.
+          - name: STREET_NAME
+            description: A string 
+          - name: STREET_TYPE
+            description: A string giving only the street suffix portion of this voter's address. Ie St, Dr, Ct.
+          - name: POST_DIR
+            description: A string giving only the street suffix direction of this voter's address. Ie N, W, S.
+          - name: UNIT_TYPE
+            description: A string giving only the unit type portion of this voter's address. Ie suite, apartment.
+          - name: UNIT_NUM
+            description: A string giving only the unit number potion of this voter's address.
+          - name: RESIDENTIAL_ADDRESS
+            description: A string 
+          - name: RESIDENTIAL_CITY
+            description: A string 
+          - name: RESIDENTIAL_STATE
+            description: A string 
+          - name: RESIDENTIAL_ZIP_CODE
+            description: An integer 
+          - name: RESIDENTIAL_ZIP_PLUS
+            description: An integer 
+          - name: EFFECTIVE_DATE
+            description: A date giving when this particular voter record went into effect.
+          - name: REGISTRATION_DATE
+            description: A date giving when this voter first registered.
+          - name: STATUS
+            description: A string denoting if this voter is active or inactive.
+          - name: STATUS_CODE
+            description: A string denoting if this voter is active or inactive.
+          - name: VOTER_STATUS_ID
+            description: An integer denoting if this voter is active or inactive
+          - name: STATUS_REASON
+            description: A string 
+          - name: BIRTH_YEAR
+            description: An integer 
+          - name: GENDER
+            description: A string 
+          - name: PARTY
+            description: A string giving the party this voter chooses to Primary with.
+          - name: PREFERENCE
+            description: A string 
+          - name: PARTY_AFFILIATION_DATE
+            description: A date denoting when this voter affiliated with the party they're currently registered as.
+          - name: PHONE_NUM
+            description: A string 
+          - name: MAIL_ADDR1
+            description: A string 
+          - name: MAIL_ADDR2
+            description: A string 
+          - name: MAIL_ADDR3
+            description: A string 
+          - name: MAILING_CITY
+            description: A string 
+          - name: MAILING_STATE
+            description: A string 
+          - name: MAILING_ZIP_CODE
+            description: An integer 
+          - name: MAILING_ZIP_PLUS
+            description: An integer 
+          - name: MAILING_COUNTRY
+            description: A string 
+          - name: PERMANENT_MAIL_IN_VOTER
+            description: A string denoting if this voter should always receive a mail-in ballot. All active voters do now.
+          - name: SPL_ID
+            description: A string 
+          - name: SPLIT
+            description: A string 
+          - name: ID_REQUIRED
+            description: A string indicating whether or not this voter needs to submit id with their ballot.
+          - name: US_CITIZEN
+            description: A string 
+          - name: CONFIDENTIAL
+            description: A string 
+          - name: PRECINCT_NAME
+            description: An integer 
+          - name: PRECINCT
+            description: An integer 
+          - name: CONGRESSIONAL
+            description: A string 
+          - name: STATE_SENATE
+            description: A string 
+          - name: STATE_HOUSE
+            description: A string 
+          - name: PVG
+            description: A string denoting how many of the last four General Elections this voter has participated in.
+          - name: PVP
+            description: A string denoting how many of the last four Primary Elections this voter has participated in.
+          - name: AGE_RANGE
+            description: A string 
+          - name: RACE
+            description: A string 
+          - name: VALID_FROM_DATE
+            description: A date denoting when this current voter registration record became active.
+          - name: VALID_TO_DATE
+            description: A date denoting when this current voter registration record was superceded by some change or deletion.
+
+      - name: registration-timeseries
+        description: A table holding the timeseries information for Colorado voter registration by district by party.
+        tags: [voter_file]
+
+      - name: 2016-general-returns
+      - name: 2018-primary-returns
+      - name: 2018-general-returns
+      - name: 2019-general-returns
+      - name: 2020-presidential-primary-returns
+      - name: 2020-primary-returns
+      - name: 2020-general-returns
+      - name: 2021-general-returns
+      - name: 2022-primary-returns
+      - name: 2022-general-returns
