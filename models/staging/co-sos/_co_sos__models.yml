@@ -2,7 +2,7 @@ version: 2
 
 models:
     - name: stg_co_sos__vote_history
-      description: "Colorado voter history with columns renamed  and formatted to CPC standard"
+      description: "Colorado voter history with columns renamed and formatted to CPC standard"
       columns:
           - name: voter_id
             description: A string giving the CO Secretary of State voter id for this voter
@@ -18,4 +18,8 @@ models:
             description: A string giving the party affiliation of the voter casting this ballot.
           - name: county_name
             description: A string giving the full county name of the Colorado county where this voter was registered.
+
+    - name: stg_co_sos__current_voters
+      description: A table with only the currently active voters from the master partitioned voter table and narrowed to only columns used downstream.
+      
  
