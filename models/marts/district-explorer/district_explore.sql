@@ -76,27 +76,8 @@ joined_districts AS (
         OR districts.district=current_voters.congressional
         OR districts.district=current_voters.state_senate
         OR districts.district=current_voters.state_house
-),
-
-district_counts AS (
-    SELECT
-        district,
-        party,
-        age_range,
-        gender,
-        race,
-        pvg,
-        COUNT(voter_id) as voter_count
-    FROM joined_districts
-    GROUP BY
-        district,
-        party,
-        age_range,
-        gender,
-        race,
-        pvg
 )
 
 SELECT
     *
-FROM district_counts
+FROM joined_districts
