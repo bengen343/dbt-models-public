@@ -8,17 +8,17 @@
 
 WITH current_voters AS (
     SELECT
-        VOTER_ID as voter_id,
+        VOTER_ID AS voter_id,
         'Colorado' AS state,
-        COUNTY as county,
-        CONGRESSIONAL as congressional,
-        STATE_SENATE as state_senate,
-        STATE_HOUSE as state_house,
-        PARTY as party,
-        AGE_RANGE as age_range,
-        GENDER as gender,
-        RACE as race,
-        PVG as pvg,
+        COUNTY AS county,
+        CONGRESSIONAL AS congressional,
+        STATE_SENATE AS state_senate,
+        STATE_HOUSE AS state_house,
+        PARTY AS party,
+        AGE_RANGE AS age_range,
+        GENDER AS gender,
+        RACE AS race,
+        PVG AS pvg,
     FROM {{ ref('stg_co_sos__current_voters') }}
 ),
 
