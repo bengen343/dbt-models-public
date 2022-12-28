@@ -12,9 +12,9 @@ WITH current_voters AS (
         VOTER_ID as voter_id,
         PRECINCT as precinct,
         COUNTY as county,
-        LEFT(CONGRESSIONAL, LENGTH(CONGRESSIONAL)-2) || ' ' || FORMAT('%02d', CAST(SUBSTR(CONGRESSIONAL, -2) AS INT)) AS congressional,
-        LEFT(STATE_SENATE, LENGTH(STATE_SENATE)-2) || ' ' || FORMAT('%02d', CAST(SUBSTR(STATE_SENATE, -2) AS INT)) AS state_senate,
-        LEFT(STATE_HOUSE, LENGTH(STATE_HOUSE)-2) || ' ' || FORMAT('%02d', CAST(SUBSTR(STATE_HOUSE, -2) AS INT)) AS state_house,
+        'Congressional ' || FORMAT('%02d', CAST(SUBSTR(CONGRESSIONAL, -2) AS INT)) AS congressional,
+        'State Senate ' || FORMAT('%02d', CAST(SUBSTR(STATE_SENATE, -2) AS INT)) AS state_senate,
+        'State House ' || FORMAT('%02d', CAST(SUBSTR(STATE_HOUSE, -2) AS INT)) AS state_house,
         PARTY as party,
         AGE_RANGE as age_range,
         GENDER as gender,
@@ -28,3 +28,4 @@ WITH current_voters AS (
 SELECT
     *
 FROM current_voters
+
