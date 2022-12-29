@@ -18,7 +18,10 @@ WITH current_voters AS (
         AGE_RANGE AS age_range,
         GENDER AS gender,
         RACE AS race,
-        PVG AS pvg,
+        (CASE
+            WHEN PVG IN ('PVG0', 'PVG1', 'PVG2', 'PVG3', 'PVG4') THEN PVG
+            ELSE 'New'
+        END) AS pvg,
     FROM {{ ref('stg_co_sos__current_voters') }}
 ),
 
